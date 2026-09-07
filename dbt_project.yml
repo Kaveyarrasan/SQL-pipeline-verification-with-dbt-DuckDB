@@ -1,0 +1,17 @@
+name: 'sql_verification'
+version: '1.0.0'
+config-version: 2
+
+profile: 'sql_verification'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  sql_verification:
+    +materialized: table

@@ -1,0 +1,42 @@
+version: 2
+
+seeds:
+  - name: customers
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        tests:
+          - not_null
+
+  - name: orders
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: cust_id
+        tests:
+          - not_null
+      - name: order_date
+        tests:
+          - not_null
+      - name: total_order_cost
+        tests:
+          - not_null
+
+models:
+  - name: highest_daily_orders
+    description: >
+      Customer(s) with the highest total order cost on a single day within the
+      2019-02-01 to 2019-05-01 range. Uses RANK() rather than ROW_NUMBER() so
+      genuine ties are returned in full rather than arbitrarily broken.
+    columns:
+      - name: first_name
+        tests:
+          - not_null
+      - name: total_cost_cust_date
+        tests:
+          - not_null
